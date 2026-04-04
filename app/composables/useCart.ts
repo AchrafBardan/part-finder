@@ -1,5 +1,5 @@
 import { useLocalStorage } from "@vueuse/core";
-import type { Product } from "~/server/api/utils/products";
+import type { Product } from "~~/server/api/utils/products";
 
 export type CartLine = {
     product: Product
