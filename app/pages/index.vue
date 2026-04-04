@@ -32,6 +32,38 @@ const {
 
 const products = computed(() => productsData.value ?? []);
 
+async function goToExactOemMatch() {
+  const value = search.value.trim();
+  if (!value) {
+    return;
+  }
+
+  const normalizedValue = value.toLowerCase();
+
+  const exactLoadedMatch = products.value.find(
+    (product) => product.oem.toLowerCase() === normalizedValue,
+  );
+  if (exactLoadedMatch) {
+    await navigateTo(`/products/${exactLoadedMatch.id}`);
+    return;
+  }
+
+  try {
+    const productsBySearch = await $fetch<Product[]>("/api/products", {
+      query: { search: value },
+    });
+    const exactFetchedMatch = productsBySearch.find(
+      (product) => product.oem.toLowerCase() === normalizedValue,
+    );
+
+    if (exactFetchedMatch) {
+      await navigateTo(`/products/${exactFetchedMatch.id}`);
+    }
+  } catch {
+    // Ignore fallback fetch errors and keep current search behavior.
+  }
+}
+
 const availableBrands = computed(() => {
   const brands = new Set(products.value.map((product) => product.brand));
   return Array.from(brands).sort((left, right) => left.localeCompare(right));
@@ -84,6 +116,7 @@ function toggleBrand(brand: string, checked: boolean | "indeterminate") {
           v-model="search"
           placeholder="Search by part name or OEM number"
           class="h-11 border-white/25 bg-white/10 text-white placeholder:text-white/70"
+          @keydown.enter="goToExactOemMatch"
         />
       </div>
     </section>
