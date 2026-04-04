@@ -36,10 +36,10 @@ export function useCart() {
     function decreaseQuantity(productId: string) {
         const line = store.value.find(line => line.product.id === productId)
         if (line) {
-            line.quantity--
-            if (line.quantity <= 0) {
-                removeFromCart(productId)
+            if (line.quantity <= 1) {
+                return;
             }
+            line.quantity--
         }
     }
 
