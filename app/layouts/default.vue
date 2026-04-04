@@ -34,21 +34,6 @@
 
           <Cart />
         </div>
-
-        <nav class="flex items-center gap-2">
-          <NuxtLink
-            to="/"
-            class="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            Home
-          </NuxtLink>
-          <NuxtLink
-            to="/products"
-            class="rounded-full border border-slate-300 bg-white px-4 py-1.5 text-sm font-medium text-slate-700 transition hover:bg-slate-100"
-          >
-            Browse Parts
-          </NuxtLink>
-        </nav>
       </div>
     </header>
 
