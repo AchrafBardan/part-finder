@@ -2,7 +2,8 @@
 import ProductCard from "@/components/ProductCard/ProductCard.vue";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
+import NativeSelect from "~/components/ui/native-select/NativeSelect.vue";
+import NativeSelectOption from "~/components/ui/native-select/NativeSelectOption.vue";
 import type { Product } from "~~/server/api/utils/products";
 
 const search = ref("");
@@ -142,25 +143,29 @@ function toggleBrand(brand: string, checked: boolean | "indeterminate") {
 
         <div class="space-y-2">
           <label for="condition" class="text-sm font-medium">Condition</label>
-          <Select id="condition" v-model="condition">
-            <option value="">All conditions</option>
-            <option
+          <NativeSelect id="condition" v-model="condition">
+            <NativeSelectOption value="">All conditions</NativeSelectOption>
+            <NativeSelectOption
               v-for="item in availableConditions"
               :key="item"
               :value="item"
               class="capitalize"
             >
               {{ item }}
-            </option>
-          </Select>
+            </NativeSelectOption>
+          </NativeSelect>
         </div>
 
         <div class="space-y-2">
           <label for="sort" class="text-sm font-medium">Sort by price</label>
-          <Select id="sort" v-model="sort">
-            <option value="price-desc">High to low</option>
-            <option value="price-asc">Low to high</option>
-          </Select>
+          <NativeSelect id="sort" v-model="sort">
+            <NativeSelectOption value="price-desc"
+              >High to low</NativeSelectOption
+            >
+            <NativeSelectOption value="price-asc"
+              >Low to high</NativeSelectOption
+            >
+          </NativeSelect>
         </div>
       </div>
     </section>
