@@ -3,6 +3,7 @@ import { ArrowLeft } from "lucide-vue-next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Product } from "~~/server/api/utils/products";
+import { formatPrice } from "~/lib/price";
 
 const route = useRoute();
 const id = computed(() => String(route.params.id ?? ""));
@@ -19,13 +20,6 @@ const currentLine = computed(() =>
   cartLines.value.find((line) => line.product.id === product.value?.id),
 );
 const quantityInQuote = computed(() => currentLine.value?.quantity ?? 0);
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-}
 
 function addCurrentProductToQuote() {
   if (!product.value || !product.value.inStock) {

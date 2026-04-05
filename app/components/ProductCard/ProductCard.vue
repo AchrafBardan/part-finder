@@ -1,20 +1,12 @@
 <script setup lang="ts">
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { formatPrice } from "~/lib/price";
 import type { Product } from "~~/server/api/utils/products";
 
 const props = defineProps<{
   product: Product;
 }>();
-
-const { addToCart } = useCart();
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-}
 </script>
 
 <template>

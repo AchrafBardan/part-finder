@@ -2,6 +2,7 @@
 import { Minus, Plus, Trash2 } from "lucide-vue-next";
 import { Button } from "@/components/ui/button";
 import type { CartLine as CartLineType } from "@/composables/useCart";
+import { formatPrice } from "~/lib/price";
 
 const props = defineProps<{
   line: CartLineType;
@@ -10,13 +11,6 @@ const props = defineProps<{
 const lineTotal = computed(
   () => props.line.product.price * props.line.quantity,
 );
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-}
 
 const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
 </script>

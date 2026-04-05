@@ -11,6 +11,7 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import CartLine from "@/components/Cart/CartLine.vue";
+import { formatPrice } from "~/lib/price";
 
 const { cartLines, addToCart, removeFromCart, clearCart } = useCart();
 
@@ -24,13 +25,6 @@ const subtotal = computed(() =>
   ),
 );
 const total = computed(() => subtotal.value);
-
-function formatPrice(amount: number) {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(amount);
-}
 
 function printQuote() {
   window.print();
