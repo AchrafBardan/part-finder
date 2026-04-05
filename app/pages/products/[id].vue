@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowLeft } from "lucide-vue-next";
+import { ArrowLeft, Minus, Plus } from "lucide-vue-next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import type { Product } from "~~/server/api/utils/products";
@@ -16,6 +16,8 @@ const {
 
 const { addToCart, cartLines } = useCart();
 
+const selectedQuantity = ref(1);
+
 const currentLine = computed(() =>
   cartLines.value.find((line) => line.product.id === product.value?.id),
 );
@@ -26,7 +28,15 @@ function addCurrentProductToQuote() {
     return;
   }
 
-  addToCart(product.value);
+  addToCart(product.value, selectedQuantity.value);
+}
+
+function decreaseSelectedQuantity() {
+  selectedQuantity.value = Math.max(1, selectedQuantity.value - 1);
+}
+
+function increaseSelectedQuantity() {
+  selectedQuantity.value += 1;
 }
 </script>
 
@@ -116,13 +126,44 @@ function addCurrentProductToQuote() {
             <p class="text-2xl font-bold">{{ formatPrice(product.price) }}</p>
           </div>
 
-          <Button
-            class="w-full"
-            :disabled="!product.inStock"
-            @click="addCurrentProductToQuote"
-          >
-            {{ product.inStock ? "Add to quote list" : "Out of stock" }}
-          </Button>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div
+              class="flex w-full items-center justify-between rounded-md border px-3 py-2 sm:w-32 sm:flex-none"
+            >
+              <Button
+                variant="ghost"
+                size="icon"
+                class="h-8 w-8 shrink-0"
+                :disabled="selectedQuantity === 1"
+                @click="decreaseSelectedQuantity"
+              >
+                <Minus class="h-4 w-4" />
+                <span class="sr-only">Decrease quantity</span>
+              </Button>
+
+              <span class="min-w-8 text-center text-sm font-medium">
+                {{ selectedQuantity }}
+              </span>
+
+              <Button
+                variant="ghost"
+                size="icon"
+                class="h-8 w-8 shrink-0"
+                @click="increaseSelectedQuantity"
+              >
+                <Plus class="h-4 w-4" />
+                <span class="sr-only">Increase quantity</span>
+              </Button>
+            </div>
+
+            <Button
+              class="w-full min-w-0 flex-1 h-12"
+              :disabled="!product.inStock"
+              @click="addCurrentProductToQuote"
+            >
+              {{ product.inStock ? "Add to quote list" : "Out of stock" }}
+            </Button>
+          </div>
 
           <p v-if="quantityInQuote > 0" class="text-muted-foreground text-sm">
             In your quote list: {{ quantityInQuote }}
