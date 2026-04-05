@@ -65,6 +65,31 @@ describe('useCart', () => {
         ])
     })
 
+    it('keeps separate lines for the same product with different colors', () => {
+        const { addToCart, cartLines } = useCart()
+
+        addToCart(productA, 1, 'White')
+        addToCart(productA, 2, 'Black')
+
+        expect(cartLines.value).toEqual([
+            { product: productA, quantity: 1, color: 'White' },
+            { product: productA, quantity: 2, color: 'Black' },
+        ])
+    })
+
+    it('increments quantity only for the same product and color variant', () => {
+        const { addToCart, increaseQuantity, cartLines } = useCart()
+
+        addToCart(productA, 1, 'White')
+        addToCart(productA, 1, 'Black')
+        increaseQuantity(productA.id, 'White')
+
+        expect(cartLines.value).toEqual([
+            { product: productA, quantity: 2, color: 'White' },
+            { product: productA, quantity: 1, color: 'Black' },
+        ])
+    })
+
     it('keeps separate lines for different products', () => {
         const { addToCart, cartLines } = useCart()
 
@@ -88,7 +113,7 @@ describe('useCart', () => {
         ])
     })
 
-    it('decreases quantity and removes the line when it reaches zero', () => {
+    it('decreases quantity but does not go below one', () => {
         const { addToCart, decreaseQuantity, cartLines } = useCart()
 
         addToCart(productA, 2)
@@ -100,7 +125,9 @@ describe('useCart', () => {
 
         decreaseQuantity(productA.id)
 
-        expect(cartLines.value).toEqual([])
+        expect(cartLines.value).toEqual([
+            { product: productA, quantity: 1 },
+        ])
     })
 
     it('removes a product by id', () => {
@@ -112,6 +139,18 @@ describe('useCart', () => {
 
         expect(cartLines.value).toEqual([
             { product: productB, quantity: 1 },
+        ])
+    })
+
+    it('removes only the matching color variant', () => {
+        const { addToCart, removeFromCart, cartLines } = useCart()
+
+        addToCart(productA, 1, 'White')
+        addToCart(productA, 1, 'Black')
+        removeFromCart(productA.id, 'White')
+
+        expect(cartLines.value).toEqual([
+            { product: productA, quantity: 1, color: 'Black' },
         ])
     })
 

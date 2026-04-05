@@ -8,7 +8,12 @@
         "price": 745,
         "inStock": true,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "White",
+            "Grey",
+            "Black"
+        ]
     },
     {
         "id": "2119702",
@@ -19,7 +24,12 @@
         "price": 760,
         "inStock": true,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "White",
+            "Grey",
+            "Black"
+        ]
     },
     {
         "id": "2119703",
@@ -30,7 +40,12 @@
         "price": 1200,
         "inStock": false,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "White",
+            "Blue",
+            "Silver"
+        ]
     },
     {
         "id": "2119704",
@@ -41,7 +56,11 @@
         "price": 450,
         "inStock": true,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "Black",
+            "Chrome"
+        ]
     },
     {
         "id": "2119705",
@@ -52,7 +71,12 @@
         "price": 980,
         "inStock": true,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "White",
+            "Blue",
+            "Red"
+        ]
     },
     {
         "id": "2119706",
@@ -63,7 +87,12 @@
         "price": 990,
         "inStock": false,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "White",
+            "Blue",
+            "Red"
+        ]
     },
     {
         "id": "2119707",
@@ -140,7 +169,11 @@
         "price": 370,
         "inStock": true,
         "category": "Lighting",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "Clear",
+            "Smoked"
+        ]
     },
     {
         "id": "2119714",
@@ -151,7 +184,11 @@
         "price": 365,
         "inStock": false,
         "category": "Lighting",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "Clear",
+            "Smoked"
+        ]
     },
     {
         "id": "2119715",
@@ -206,7 +243,11 @@
         "price": 180,
         "inStock": false,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "Black",
+            "Matte Black"
+        ]
     },
     {
         "id": "2119720",
@@ -217,6 +258,10 @@
         "price": 260,
         "inStock": true,
         "category": "Body",
-        "image": "https://static.photos/automotive/400x400/111"
+        "image": "https://static.photos/automotive/400x400/111",
+        "colors": [
+            "Black",
+            "Grey"
+        ]
     }
 ]

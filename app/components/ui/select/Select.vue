@@ -1,43 +1,19 @@
 <script setup lang="ts">
-import type { HTMLAttributes } from "vue";
-import { ChevronDown } from "lucide-vue-next";
-import { cn } from "@/lib/utils";
+import type { SelectRootEmits, SelectRootProps } from "reka-ui"
+import { SelectRoot, useForwardPropsEmits } from "reka-ui"
 
-defineProps<{
-  class?: HTMLAttributes["class"];
-  modelValue?: string;
-  id?: string;
-  name?: string;
-}>();
+const props = defineProps<SelectRootProps>()
+const emits = defineEmits<SelectRootEmits>()
 
-const emit = defineEmits<{
-  (e: "update:modelValue", value: string): void;
-}>();
-
-function onChange(event: Event) {
-  emit("update:modelValue", (event.target as HTMLSelectElement).value);
-}
+const forwarded = useForwardPropsEmits(props, emits)
 </script>
 
 <template>
-  <div class="relative">
-    <select
-      data-slot="select"
-      :id="id"
-      :name="name"
-      :value="modelValue"
-      :class="
-        cn(
-          'h-9 w-full appearance-none rounded-md border border-input bg-background px-3 pr-8 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] disabled:cursor-not-allowed disabled:opacity-50',
-          $props.class,
-        )
-      "
-      @change="onChange"
-    >
-      <slot />
-    </select>
-    <ChevronDown
-      class="pointer-events-none absolute top-1/2 right-2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
-    />
-  </div>
+  <SelectRoot
+    v-slot="slotProps"
+    data-slot="select"
+    v-bind="forwarded"
+  >
+    <slot v-bind="slotProps" />
+  </SelectRoot>
 </template>

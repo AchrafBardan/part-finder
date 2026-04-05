@@ -13,7 +13,7 @@ import {
 import CartLine from "@/components/Cart/CartLine.vue";
 import { formatPrice } from "~/lib/price";
 
-const { cartLines, addToCart, removeFromCart, clearCart } = useCart();
+const { cartLines, clearCart } = useCart();
 
 const itemCount = computed(() =>
   cartLines.value.reduce((count, line) => count + line.quantity, 0),
@@ -56,7 +56,7 @@ function printQuote() {
             <div class="space-y-2">
               <CartLine
                 v-for="line in cartLines"
-                :key="line.product.id"
+                :key="`${line.product.id}-${line.color ?? 'default'}`"
                 :line="line"
               />
             </div>

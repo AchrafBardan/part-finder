@@ -10,6 +10,7 @@ export type Product = {
     inStock: boolean
     category: string
     image: string
+    colors?: string[]
 }
 
 export function getProducts(): Product[] {

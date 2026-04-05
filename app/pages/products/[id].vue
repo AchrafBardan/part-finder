@@ -2,8 +2,16 @@
 import { ArrowLeft, Minus, Plus } from "lucide-vue-next";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import type { Product } from "~~/server/api/utils/products";
 import { formatPrice } from "~/lib/price";
+import { getHexFromColorName } from "~/lib/color";
 
 const route = useRoute();
 const id = computed(() => String(route.params.id ?? ""));
@@ -17,9 +25,27 @@ const {
 const { addToCart, cartLines } = useCart();
 
 const selectedQuantity = ref(1);
+const selectedColor = ref<string | undefined>(undefined);
+
+watchEffect(() => {
+  const colors = product.value?.colors ?? [];
+
+  if (colors.length === 0) {
+    selectedColor.value = undefined;
+    return;
+  }
+
+  if (!selectedColor.value || !colors.includes(selectedColor.value)) {
+    selectedColor.value = colors[0];
+  }
+});
 
 const currentLine = computed(() =>
-  cartLines.value.find((line) => line.product.id === product.value?.id),
+  cartLines.value.find(
+    (line) =>
+      line.product.id === product.value?.id &&
+      (line.color ?? null) === (selectedColor.value ?? null),
+  ),
 );
 const quantityInQuote = computed(() => currentLine.value?.quantity ?? 0);
 
@@ -28,7 +54,7 @@ function addCurrentProductToQuote() {
     return;
   }
 
-  addToCart(product.value, selectedQuantity.value);
+  addToCart(product.value, selectedQuantity.value, selectedColor.value);
 }
 
 function decreaseSelectedQuantity() {
@@ -126,6 +152,43 @@ function increaseSelectedQuantity() {
             <p class="text-2xl font-bold">{{ formatPrice(product.price) }}</p>
           </div>
 
+          <div v-if="product.colors?.length" class="space-y-2">
+            <p class="text-muted-foreground text-sm">Color</p>
+            <Select v-model="selectedColor">
+              <SelectTrigger class="w-full">
+                <SelectValue placeholder="Select color">
+                  <div
+                    v-if="selectedColor"
+                    class="inline-block h-4 w-4 rounded-xs border"
+                    :style="{
+                      backgroundColor:
+                        getHexFromColorName(selectedColor) ?? 'transparent',
+                    }"
+                  />
+                  {{ selectedColor || "Select color" }}
+                </SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem
+                  v-for="color in product.colors"
+                  :key="color"
+                  :value="color"
+                >
+                  <div>
+                    <span
+                      class="inline-block h-4 w-4 rounded-xs border"
+                      :style="{
+                        backgroundColor:
+                          getHexFromColorName(color) ?? 'transparent',
+                      }"
+                    />
+                  </div>
+                  {{ color }}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
             <div
               class="flex w-full items-center justify-between rounded-md border px-3 py-2 sm:w-32 sm:flex-none"
@@ -166,7 +229,8 @@ function increaseSelectedQuantity() {
           </div>
 
           <p v-if="quantityInQuote > 0" class="text-muted-foreground text-sm">
-            In your quote list: {{ quantityInQuote }}
+            In your quote list{{ selectedColor ? ` (${selectedColor})` : "" }}:
+            {{ quantityInQuote }}
           </p>
         </div>
       </div>
