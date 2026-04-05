@@ -1,12 +1,22 @@
 <script setup lang="ts">
+import { toRef } from "vue";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { getHexFromColorName } from "~/lib/color";
 import { formatPrice } from "~/lib/price";
 import type { Product } from "~~/server/api/utils/products";
 
 const props = defineProps<{
   product: Product;
 }>();
+
+const product = toRef(props, "product");
+
+const previewColors = computed(() => product.value.colors ?? []);
+const visibleColors = computed(() => previewColors.value.slice(0, 4));
+const remainingColors = computed(() =>
+  Math.max(0, previewColors.value.length - visibleColors.value.length),
+);
 </script>
 
 <template>
@@ -43,6 +53,35 @@ const props = defineProps<{
           <Badge :variant="product.inStock ? 'success' : 'destructive'">
             {{ product.inStock ? "In stock" : "Out of stock" }}
           </Badge>
+        </div>
+
+        <div
+          v-if="previewColors.length"
+          class="flex items-center justify-between gap-3 rounded-lg border bg-muted/30 px-3 py-2"
+        >
+          <p
+            class="text-[11px] font-medium uppercase tracking-[0.22em] text-muted-foreground"
+          >
+            Colors
+          </p>
+
+          <div class="flex items-center gap-1.5">
+            <span
+              v-for="color in visibleColors"
+              :key="color"
+              class="h-6 w-6 rounded-full border border-gray shadow-sm ring-1 ring-background"
+              :title="color"
+              :style="{
+                backgroundColor: getHexFromColorName(color) ?? '#D1D5DB',
+              }"
+            />
+            <span
+              v-if="remainingColors > 0"
+              class="inline-flex h-6 min-w-6 items-center justify-center rounded-full border border-card bg-background px-1.5 text-[10px] font-semibold text-muted-foreground shadow-sm ring-1 ring-background"
+            >
+              +{{ remainingColors }}
+            </span>
+          </div>
         </div>
 
         <div class="flex items-center justify-between pt-1">
