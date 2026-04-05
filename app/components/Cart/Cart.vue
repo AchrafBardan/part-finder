@@ -31,6 +31,10 @@ function formatPrice(amount: number) {
     currency: "USD",
   }).format(amount);
 }
+
+function printQuote() {
+  window.print();
+}
 </script>
 
 <template>
@@ -78,7 +82,9 @@ function formatPrice(amount: number) {
           </div>
         </div>
         <DrawerFooter>
-          <Button :disabled="cartLines.length === 0">Print quote</Button>
+          <Button :disabled="cartLines.length === 0" @click="printQuote">
+            Print quote
+          </Button>
           <Button
             variant="outline"
             :disabled="cartLines.length === 0"
@@ -94,3 +100,15 @@ function formatPrice(amount: number) {
     </DrawerContent>
   </Drawer>
 </template>
+
+<style scoped>
+@media print {
+  :deep(button),
+  :deep([role="button"]),
+  :deep(input[type="button"]),
+  :deep(input[type="submit"]),
+  :deep(input[type="reset"]) {
+    display: none !important;
+  }
+}
+</style>
