@@ -263,5 +263,187 @@
             "Black",
             "Grey"
         ]
+    },
+    {
+        "id": "3001001",
+        "name": "Volvo FH16 Front Bumper",
+        "oem": "3001001",
+        "brand": "Volvo",
+        "condition": "new",
+        "price": 1850,
+        "inStock": true,
+        "category": "Body",
+        "image": "https://static.photos/automotive/400x400/222",
+        "colors": [
+            "White",
+            "Black",
+            "Silver"
+        ]
+    },
+    {
+        "id": "3001002",
+        "name": "Volvo FH16 Cabin Door Left",
+        "oem": "3001002",
+        "brand": "Volvo",
+        "condition": "new",
+        "price": 2100,
+        "inStock": true,
+        "category": "Body",
+        "image": "https://static.photos/automotive/400x400/222",
+        "colors": [
+            "White",
+            "Blue"
+        ]
+    },
+    {
+        "id": "3001003",
+        "name": "Volvo FH16 Radiator",
+        "oem": "3001003",
+        "brand": "Volvo",
+        "condition": "refurbished",
+        "price": 950,
+        "inStock": true,
+        "category": "Cooling",
+        "image": "https://static.photos/automotive/400x400/222"
+    },
+    {
+        "id": "3001004",
+        "name": "Scania R440 Windshield",
+        "oem": "3001004",
+        "brand": "Scania",
+        "condition": "new",
+        "price": 1400,
+        "inStock": false,
+        "category": "Glass",
+        "image": "https://static.photos/automotive/400x400/333",
+        "colors": [
+            "Clear",
+            "Tinted"
+        ]
+    },
+    {
+        "id": "3001005",
+        "name": "Scania R440 Air Filter",
+        "oem": "3001005",
+        "brand": "Scania",
+        "condition": "new",
+        "price": 180,
+        "inStock": true,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/333"
+    },
+    {
+        "id": "3001006",
+        "name": "Mercedes-Benz Actros Mirror",
+        "oem": "3001006",
+        "brand": "Mercedes-Benz",
+        "condition": "used",
+        "price": 320,
+        "inStock": true,
+        "category": "Body",
+        "image": "https://static.photos/automotive/400x400/444",
+        "colors": [
+            "Black",
+            "Chrome"
+        ]
+    },
+    {
+        "id": "3001007",
+        "name": "Mercedes-Benz Actros Fog Light Assembly",
+        "oem": "3001007",
+        "brand": "Mercedes-Benz",
+        "condition": "refurbished",
+        "price": 580,
+        "inStock": true,
+        "category": "Lighting",
+        "image": "https://static.photos/automotive/400x400/444"
+    },
+    {
+        "id": "3001008",
+        "name": "Renault Premium DXi Engine Mount",
+        "oem": "3001008",
+        "brand": "Renault",
+        "condition": "used",
+        "price": 420,
+        "inStock": true,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/555"
+    },
+    {
+        "id": "3001009",
+        "name": "Renault Premium DXi Transmission Filter",
+        "oem": "3001009",
+        "brand": "Renault",
+        "condition": "new",
+        "price": 240,
+        "inStock": true,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/555"
+    },
+    {
+        "id": "3001010",
+        "name": "MAN TGX Exhaust Pipe",
+        "oem": "3001010",
+        "brand": "MAN",
+        "condition": "used",
+        "price": 550,
+        "inStock": true,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/666"
+    },
+    {
+        "id": "3001011",
+        "name": "MAN TGX Turbocharger",
+        "oem": "3001011",
+        "brand": "MAN",
+        "condition": "refurbished",
+        "price": 1680,
+        "inStock": false,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/666"
+    },
+    {
+        "id": "3001012",
+        "name": "Iveco Stralis Door Handle",
+        "oem": "3001012",
+        "brand": "Iveco",
+        "condition": "new",
+        "price": 160,
+        "inStock": true,
+        "category": "Body",
+        "image": "https://static.photos/automotive/400x400/777"
+    },
+    {
+        "id": "3001013",
+        "name": "Iveco Stralis Brake Pad Set",
+        "oem": "3001013",
+        "brand": "Iveco",
+        "condition": "new",
+        "price": 380,
+        "inStock": true,
+        "category": "Brakes",
+        "image": "https://static.photos/automotive/400x400/777"
+    },
+    {
+        "id": "3001014",
+        "name": "DAF XF 106 Water Pump",
+        "oem": "3001014",
+        "brand": "DAF",
+        "condition": "refurbished",
+        "price": 680,
+        "inStock": true,
+        "category": "Engine",
+        "image": "https://static.photos/automotive/400x400/111"
+    },
+    {
+        "id": "3001015",
+        "name": "Volvo FH16 Alternator",
+        "oem": "3001015",
+        "brand": "Volvo",
+        "condition": "refurbished",
+        "price": 1200,
+        "inStock": true,
+        "category": "Electrical",
+        "image": "https://static.photos/automotive/400x400/222"
     }
 ]
