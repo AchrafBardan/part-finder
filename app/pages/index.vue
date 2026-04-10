@@ -22,6 +22,12 @@ const query = computed(() => {
   };
 });
 
+const { data: allProductsData, pending: allProductsPending } = await useFetch<
+  Product[]
+>("/api/products", {
+  default: () => [],
+});
+
 const {
   data: productsData,
   pending,
@@ -31,6 +37,7 @@ const {
   default: () => [],
 });
 
+const allProducts = computed(() => allProductsData.value ?? []);
 const products = computed(() => productsData.value ?? []);
 
 async function goToExactOemMatch() {
@@ -66,13 +73,13 @@ async function goToExactOemMatch() {
 }
 
 const availableBrands = computed(() => {
-  const brands = new Set(products.value.map((product) => product.brand));
+  const brands = new Set(allProducts.value.map((product) => product.brand));
   return Array.from(brands).sort((left, right) => left.localeCompare(right));
 });
 
 const availableConditions = computed(() => {
   const conditions = new Set(
-    products.value.map((product) => product.condition),
+    allProducts.value.map((product) => product.condition),
   );
   return Array.from(conditions).sort((left, right) =>
     left.localeCompare(right),
