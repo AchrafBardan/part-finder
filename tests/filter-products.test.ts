@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { filterProductsByQuery } from '../app/server/api/utils/filter-products'
+import { filterProductsByQuery } from '~~/api/utils/filter-products'
 
 const fixtureProducts = [
     {

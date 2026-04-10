@@ -6,10 +6,12 @@ export default defineConfig({
         alias: {
             '~': fileURLToPath(new URL('./app', import.meta.url)),
             '@': fileURLToPath(new URL('./app', import.meta.url)),
+            '~~': fileURLToPath(new URL('./server', import.meta.url)),
         },
     },
     test: {
         environment: 'node',
         include: ['tests/**/*.test.ts'],
+        exclude: ['tests/browser/**'],
     },
 })

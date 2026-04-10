@@ -1,5 +1,5 @@
 import { beforeAll, describe, expect, it } from 'vitest'
-import { getProducts } from '../app/server/api/utils/products'
+import { getProducts } from '~~/api/utils/products'
 
 type TestEvent = {
     query?: Record<string, unknown>
@@ -20,12 +20,12 @@ beforeAll(() => {
 })
 
 async function loadIndexHandler() {
-    const mod = await import('../app/server/api/products/index')
+    const mod = await import('~~/api/products/index')
     return mod.default as (event: TestEvent) => ReturnType<typeof getProducts>
 }
 
 async function loadByIdHandler() {
-    const mod = await import('../app/server/api/products/[id]')
+    const mod = await import('~~/api/products/[id]')
     return mod.default as (event: TestEvent) => ReturnType<typeof getProducts>[number]
 }
 
