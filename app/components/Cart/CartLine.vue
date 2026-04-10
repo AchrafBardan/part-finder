@@ -16,14 +16,25 @@ const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
 </script>
 
 <template>
-  <div class="flex items-center justify-between rounded-md border p-3">
+  <div
+    class="flex items-center justify-between rounded-md border p-3"
+    data-cy="cart-item"
+  >
     <div class="min-w-0 flex-1">
-      <p class="truncate font-medium">{{ line.product.name }}</p>
-      <p v-if="line.color" class="text-muted-foreground text-sm">
+      <p class="truncate font-medium" data-cy="cart-item-name">
+        {{ line.product.name }}
+      </p>
+      <p
+        v-if="line.color"
+        class="text-muted-foreground text-sm"
+        data-cy="cart-item-color"
+      >
         Color: {{ line.color }}
       </p>
       <p class="text-muted-foreground text-sm">{{ line.product.brand }}</p>
-      <p class="text-sm font-semibold">{{ formatPrice(lineTotal) }}</p>
+      <p class="text-sm font-semibold" data-cy="cart-item-price">
+        {{ formatPrice(lineTotal) }}
+      </p>
     </div>
 
     <div class="ml-4 flex items-center gap-2">
@@ -31,20 +42,24 @@ const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
         variant="outline"
         size="icon"
         class="h-8 w-8"
+        data-cy="decrease-quantity-button"
         @click="decreaseQuantity(line.product.id, line.color)"
       >
         <Minus class="h-4 w-4" />
         <span class="sr-only">Decrease quantity</span>
       </Button>
 
-      <span class="w-6 text-center text-sm font-medium">{{
-        line.quantity
-      }}</span>
+      <span
+        class="w-6 text-center text-sm font-medium"
+        data-cy="cart-item-quantity"
+        >{{ line.quantity }}</span
+      >
 
       <Button
         variant="outline"
         size="icon"
         class="h-8 w-8"
+        data-cy="increase-quantity-button"
         @click="increaseQuantity(line.product.id, line.color)"
       >
         <Plus class="h-4 w-4" />
@@ -55,6 +70,7 @@ const { increaseQuantity, decreaseQuantity, removeFromCart } = useCart();
         variant="ghost"
         size="icon"
         class="h-8 w-8"
+        data-cy="remove-item-button"
         @click="removeFromCart(line.product.id, line.color)"
       >
         <Trash2 class="h-4 w-4" />

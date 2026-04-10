@@ -34,7 +34,11 @@ function printQuote() {
 <template>
   <Drawer>
     <DrawerTrigger as-child>
-      <Button variant="outline">Quote ({{ itemCount }})</Button>
+      <ClientOnly>
+        <Button data-cy="cart-trigger" variant="outline"
+          >Quote ({{ itemCount }})</Button
+        >
+      </ClientOnly>
     </DrawerTrigger>
     <DrawerContent>
       <div class="mx-auto w-full max-w-xl">
@@ -80,6 +84,7 @@ function printQuote() {
             Print quote
           </Button>
           <Button
+            data-cy="clear-cart-button"
             variant="outline"
             :disabled="cartLines.length === 0"
             @click="clearCart"

@@ -38,7 +38,7 @@
         "brand": "DAF",
         "condition": "used",
         "price": 1200,
-        "inStock": false,
+        "inStock": true,
         "category": "Body",
         "image": "https://static.photos/automotive/400x400/111",
         "colors": [

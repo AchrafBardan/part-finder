@@ -155,7 +155,7 @@ function increaseSelectedQuantity() {
           <div v-if="product.colors?.length" class="space-y-2">
             <p class="text-muted-foreground text-sm">Color</p>
             <Select v-model="selectedColor">
-              <SelectTrigger class="w-full">
+              <SelectTrigger class="w-full" data-cy="color-select-trigger">
                 <SelectValue placeholder="Select color">
                   <div
                     v-if="selectedColor"
@@ -173,6 +173,7 @@ function increaseSelectedQuantity() {
                   v-for="color in product.colors"
                   :key="color"
                   :value="color"
+                  data-cy="color-item"
                 >
                   <div>
                     <span
@@ -198,6 +199,7 @@ function increaseSelectedQuantity() {
                 size="icon"
                 class="h-8 w-8 shrink-0"
                 :disabled="selectedQuantity === 1"
+                data-cy="decrease-quantity-button"
                 @click="decreaseSelectedQuantity"
               >
                 <Minus class="h-4 w-4" />
@@ -212,6 +214,7 @@ function increaseSelectedQuantity() {
                 variant="ghost"
                 size="icon"
                 class="h-8 w-8 shrink-0"
+                data-cy="increase-quantity-button"
                 @click="increaseSelectedQuantity"
               >
                 <Plus class="h-4 w-4" />
@@ -223,6 +226,7 @@ function increaseSelectedQuantity() {
               class="w-full min-w-0 flex-1 h-12"
               :disabled="!product.inStock"
               @click="addCurrentProductToQuote"
+              data-cy="add-to-quote-button"
             >
               {{ product.inStock ? "Add to quote list" : "Out of stock" }}
             </Button>
